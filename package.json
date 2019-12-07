@@ -20,7 +20,7 @@
     "prod-stop": "pm2 stop start-matchProd",
     "prod-reload": "pm2 reload --update-env start-matchProd",
     "prod-logs": "pm2 logs --update-env start-matchProd",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build-all && npm run prod-start"
   },
   "jest": {
     "modulePaths": [
