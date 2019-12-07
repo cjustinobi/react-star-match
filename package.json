@@ -8,7 +8,7 @@
   },
   "scripts": {
     "eslint": "eslint \"src/**/*.js\"",
-    "start": "cross-env NODE_ENV=production NODE_PATH=./build pm2 start -i max build/server/server.js --update-env --name start-matchProd",
+    "start": "concurrently \"yarn run dev-server\" \"yarn run dev-bundle\"",
     "test": "jest",
     "dev-server": "cross-env NODE_PATH=./src nodemon --exec \"babel-node src/server/server.js\" --ignore .reactful.json --ignore public/",
     "dev-bundle": "webpack -wd",
@@ -19,8 +19,7 @@
     "prod-start": "cross-env NODE_ENV=production NODE_PATH=./build pm2 start -i max build/server/server.js --update-env --name start-matchProd",
     "prod-stop": "pm2 stop start-matchProd",
     "prod-reload": "pm2 reload --update-env start-matchProd",
-    "prod-logs": "pm2 logs --update-env start-matchProd",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build-all && npm run prod-start"
+    "prod-logs": "pm2 logs --update-env start-matchProd"
   },
   "jest": {
     "modulePaths": [
@@ -45,6 +44,7 @@
     "body-parser": "^1.19.0",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.1",
+    "concurrently": "^5.0.0",
     "ejs": "^3.0.1",
     "express": "4",
     "mini-css-extract-plugin": "^0.8.0",
@@ -66,7 +66,6 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
-    "concurrently": "^5.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.7.2",
