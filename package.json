@@ -2,6 +2,10 @@
   "name": "start-match",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "10.16.2",
+    "npm": "6.9.0"
+  },
   "scripts": {
     "eslint": "eslint \"src/**/*.js\"",
     "start": "concurrently \"yarn run dev-server\" \"yarn run dev-bundle\"",
@@ -15,8 +19,7 @@
     "prod-start": "cross-env NODE_ENV=production NODE_PATH=./build pm2 start -i max build/server/server.js --update-env --name start-matchProd",
     "prod-stop": "pm2 stop start-matchProd",
     "prod-reload": "pm2 reload --update-env start-matchProd",
-    "prod-logs": "pm2 logs --update-env start-matchProd",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "prod-logs": "pm2 logs --update-env start-matchProd"
   },
   "jest": {
     "modulePaths": [
